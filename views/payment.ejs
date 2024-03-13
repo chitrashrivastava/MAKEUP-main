@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout</title>
+    <link rel="stylesheet" href="stylesheets/nav.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .payment-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .total-price {
+            font-size: 28px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        #rzp-button1 {
+            background-color: #ff3366;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            animation: scaleButton 0.3s ease-in-out;
+        }
+
+        #rzp-button1:hover {
+            background-color: #e6005c;
+        }
+
+        .icon {
+            color: #ff3366;
+            margin-right: 5px;
+        }
+
+        @keyframes scaleButton {
+            from {
+                transform: scale(0.9);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <%-include('./partials/nav')%>
+    <div class="payment-container">
+        <i class="icon fas fa-makeup fa-3x"></i>
+        <h1>Secure Checkout</h1>
+        <div class="total-price">Total Price: <%= totalPrice %> INR</div>
+        <button id="rzp-button1">Complete Purchase</button>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        var orderId;
+
+        $(document).ready(function () {
+            var settings = {
+                "url": "/create/orderId",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": JSON.stringify({
+                    "amount": "<%= totalPrice * 100 %>", // Convert totalPrice to paise
+                }),
+            };
+
+            // Create a new orderId every time
+            $.ajax(settings).done(function (response) {
+                var options = {
+                    "key": "rzp_test_xrstTxr7DXc1LD", // Replace with your Razorpay key
+                    "amount": "<%= totalPrice * 100 %>", // Convert totalPrice to paise
+                    "currency": "INR",
+                    "name": "GlamAura",
+                    "description": "Test Transaction",
+                    "order_id": response.id,
+                    "handler": function (response) {
+                        // Handle the payment response
+                        var settings = {
+                            "url": "/api/payment/verify",
+                            "method": "POST",
+                            "timeout": 0,
+                            "headers": {
+                                "Content-Type": "application/json"
+                            },
+                            "data": JSON.stringify({ "response": response }),
+                        };
+
+                        $.ajax(settings).done(function (verificationResult) {
+                            console.log(verificationResult);
+                        });
+                    },
+                    "prefill": {
+                        "name": "Pranjal Shukla",
+                        "email": "pranjalshukla245@example.com",
+                        "contact": "9302931857"
+                    },
+                    "notes": {
+                        "address": "Prayagraj"
+                    },
+                    "theme": {
+                        "color": "#339cc"
+                    }
+                };
+
+                var rzp1 = new Razorpay(options);
+                rzp1.on('payment.failed', function (response) {
+                    // Handle failed payment
+                    console.error(response.error);
+                });
+
+                document.getElementById('rzp-button1').onclick = function (e) {
+                    e.preventDefault();
+                    rzp1.open();
+                };
+            });
+        });
+    </script>
+    <script src="javascripts/cursor.js"></script>
+</body>
+
+</html>

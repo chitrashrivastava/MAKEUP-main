@@ -1,0 +1,83 @@
+/* stylesheets/shipping.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9edea; /* Light peach background color */
+    color: #3c2f2f; /* Dark brown text color */
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #e74c3c; /* Reddish-pink color for headings */
+}
+
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff; /* White background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #e74c3c; /* Reddish-pink color for labels */
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #d3a297; /* Light pink border */
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+h2 {
+    color: #e74c3c; /* Reddish-pink color for subheadings */
+    margin-bottom: 16px;
+}
+
+button {
+    background-color: #d35400; /* Orange button color */
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #a04000; /* Darker orange on hover */
+}
+.product-requested {
+    margin-top: 20px;
+}
+
+.product-requested label {
+    display: block;
+    margin-bottom: 10px;
+    color: #b36b88; /* Rose color for labels */
+}
+
+.product-requested .product-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.product-requested .product-item img {
+    max-width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.product-requested .product-name {
+    color: #b36b88; /* Rose color for product names */
+}

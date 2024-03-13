@@ -1,0 +1,92 @@
+/* stylesheets/requested.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f3f3; /* Soft pink background color */
+    color: #333; /* Dark gray text color */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+margin-top: 10vh;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+
+.shipping-info {
+    background-color: #fff;
+    border: 1px solid #e6e6e6; /* Light gray border */
+    border-radius: 8px;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #333; /* Dark gray text color */
+}
+
+.shipping-info h2 {
+    color: #e44d26; /* Orange-red for headings */
+}
+
+.product-info {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #f0f0f0; /* Lighter gray border */
+    border-radius: 5px;
+    background-color: #fff; /* White background color */
+    color: #333; /* Dark gray text color */
+}
+
+.product-info p {
+    color: #555; /* Slightly lighter gray for paragraph text */
+}
+
+/* Add any additional styling as needed */
+/* Add this to your existing CSS file or create a new one */
+.form-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-container label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .form-container select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .form-container button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .form-container button:hover {
+    background-color: #45a049;
+  }
+  

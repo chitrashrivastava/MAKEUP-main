@@ -1,0 +1,66 @@
+<!-- views/update-product.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Product</title>
+  <link rel="stylesheet" href="/public/stylesheets/nav.css">
+  <link rel="stylesheet" href="/public/stylesheets/cursor.css">
+  <link rel="stylesheet" href="/public/stylesheets/updateproduct.css">
+</head>
+
+<body>
+    <%-include('./partials/customcursor')%>
+  <%-include('./partials/nav')%>
+  <h1>Update Product</h1>
+
+  <form action="/update-product/<%= product._id  %>" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="productName">Product Name:</label>
+      <input type="text" id="productName" name="productName" value="<%= product.productName %>" required>
+    </div>
+
+    <div class="form-group">
+      <label for="productDescription">Description:</label>
+      <textarea id="productDescription" name="productDescription" rows="4" required><%= product.productDescription %></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="productPrice">Price:</label>
+      <input type="number" id="productPrice" name="productPrice" value="<%= product.productPrice %>" required>
+    </div>
+
+    <div class="form-group">
+      <label for="productImage">Product Image:</label>
+      <input type="file" id="productImage" name="productImage">
+      <img src="/<%= product.productImage %>" alt="<%= product.productName %> Image" class="preview-image">
+    </div>
+
+    <button type="submit" class="update-btn">Update Product</button>
+  </form>
+
+  <script>
+    // Preview image before uploading
+    document.getElementById('productImage').addEventListener('change', function (event) {
+      const previewImage = document.querySelector('.preview-image');
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onloadend = function () {
+        previewImage.src = reader.result;
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        previewImage.src = '';
+      }
+    });
+  </script>
+  <script src="/public/javascripts/cursor.js"></script>
+</body>
+
+</html>

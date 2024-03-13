@@ -1,0 +1,37 @@
+<div class="div1">
+  <h3>GlamAura</h3>
+  <div class="nav">
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <% if(admin && admin.accounttype && admin.accounttype === "Seller") { %>
+        <a href="/addproducts">Sell Product</a>
+        <a href="/seller">Your Selling</a>
+        <a href="/requestedproducts">Requested Products</a>
+      <% } else { %>
+        <a href="/explore">Explore Product</a>
+        <a href="/orders">Orders</a>
+
+      <% } %>
+      
+      <% if(admin){%>
+        <a href="/logout">Logout</a>
+      <% } else {%>
+        <a href="/signin">Signin</a>
+      <% }%>
+    </nav>
+    <div class="icons">
+      <a href="/profile"><i class="fa-regular fa-user"></i></a> 
+      <% if(admin && admin.accounttype && admin.accounttype === "Buyer") { %>
+        <a href="/viewcart"><i class="fa-solid fa-cart-shopping"></i></a> 
+      <% } %>
+
+    </div>
+  </div>
+  <div class="icon-bar">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+</div>

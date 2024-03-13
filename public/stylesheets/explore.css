@@ -1,0 +1,233 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .container {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 200px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left: 0;
+  }
+  /* Add the following styles for the button in the sidebar */
+.sidebar button {
+    padding: 10px 15px;
+    background-color: #ff69b4; /* Pink color for the button */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    width: 100%; /* Make the button full width */
+    margin-top: 10px; /* Add margin to separate from other elements */
+  }
+  
+  .sidebar button:hover {
+    background-color: #d84597; /* Lighter pink on hover */
+  }
+  
+  /* Adjust the form margin to give space for the button */
+  .sidebar form {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; /* Add margin at the bottom */
+  }
+  
+  /* Add some padding to the sidebar */
+  .sidebar {
+    padding: 20px;
+    transition: 0.4s ease-in all;
+
+  }
+  
+  .explore {
+    padding: 20px;
+    width: 80%;
+    transform: translate(5vw,25vh);
+
+    float: right;
+    align-items: center;
+  }
+  .explore>h1{
+        text-align: center;
+  }
+  
+  .explore-products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  
+  h1 {
+    margin-bottom: 30px;
+    color: #ff69b4; /* Pink color for emphasis */
+  }
+  
+  .product-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .product-card:hover {
+    transform: scale(1.05);
+  }
+  
+  strong {
+    color: #ff69b4; /* Pink color for emphasis */
+  }
+  
+  img {
+    margin-top: 15px;
+    width: 150px;
+    height: 200px;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  form {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    color: #ff69b4; /* Pink color for emphasis */
+  }
+  
+  input {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .add-to-cart-btn {
+    padding: 10px 15px;
+    background-color: #ff69b4; /* Pink color for the button */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .add-to-cart-btn:hover {
+    background-color: #d84597; /* Lighter pink on hover */
+  }
+  /* Add these styles to your existing CSS */
+.toggle-button {
+  display: none;
+  }
+  
+  .toggle-button:hover {
+    background-color: #d84597; /* Lighter pink on hover */
+  }
+  
+  @media screen and (max-width: 768px) {
+    body{
+     display: flex;
+        flex-direction: column; 
+        align-items: center;
+        width: 100%;
+    }
+    .sidebar {
+      display: none;
+
+    }
+  
+    .sidebar-visible {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        left: 0;
+        z-index: 11;
+        
+    }
+    .sidebar {
+        width: 200px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        z-index: 11;
+
+        left: -200px; /* Initially off-screen */
+        transition: left 0.4s ease-in-out; /* Add transition property */
+      }
+      
+      /* Modify the styles for .sidebar-visible to adjust the left position */
+      .sidebar-visible {
+        left: 0; /* Move the sidebar to the screen */
+      }
+      
+    .explore{
+        height: 100vh;
+        align-items: center;
+        margin-top:40vh;
+        width: initial;
+        transform: translate(0,0);
+    }
+    .explore-products{
+        flex-direction: column;
+        align-items: center;
+    }
+    .toggle-button{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: initial;
+        position: fixed;
+        top: 10%;
+        right: 0;
+        z-index: 22;
+        padding: 10px 20px;
+        font-size: 18px;
+        background-color: #ff69b4; /* Pink color for the button */
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
+    .product-card{
+        width: 60vw;
+    }
+  }

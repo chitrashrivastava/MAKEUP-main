@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="stylesheets/cursor.css">
+  <link rel="stylesheet" href="stylesheets/nav.css">
+  <link rel="stylesheet" href="stylesheets/footer.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.css">
+
+<style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f0eb;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      display: flex;
+    }
+
+    form {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      width: 300px;
+      max-width: 100%;
+      animation: fadeInUp 0.5s ease-out;
+    }
+    input[type="radio"]{
+      width: 15px;
+      height: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #6b5245;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: box-shadow 0.3s ease-out;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    input:hover {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    button {
+      background-color: #e18b96;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    button:hover {
+      background-color: #cc7c87;
+    }
+
+    .makeup-icon {
+      font-size: 48px;
+      color: #d2918b;
+      margin-bottom: 20px;
+    }
+
+    .account-type {
+      margin-bottom: 16px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <%-include('./partials/customcursor')%>
+  <%-include('./partials/nav')%>
+    <form action="/signup" method="post" enctype="multipart/form-data">
+    <div class="makeup-icon">
+      <i class="fas fa-makeup-brush"></i>
+    </div>
+
+    <label for="username">Username</label>
+    <input type="text" name="username" required>
+
+    <label for="email">Email</label>
+    <input type="email" name="email" required>
+
+    <label for="phone">Phone</label>
+    <input type="text" name="phone" required>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" required>
+
+    <label for="dp">Profile Pic</label>
+    <input type="file" name="dp"  >
+
+    <div class="account-type">
+      <label for="accounttype">Account Type</label>
+      <div>
+        <label><input type="radio" name="accounttype" value="Seller" required> Seller</label>
+      </div>
+      <div>
+        <label><input type="radio" name="accounttype" value="Buyer" required> Buyer</label>
+      </div>
+    </div>
+
+    <button type="submit">Sign Up</button>
+    
+    <p>Already have an account? <a href="/signin">Signin</a></p>
+
+  </form>
+   
+  <%-include('./partials/footer')%>
+  <script src="javascripts/cursor.js"></script>
+</body>
+</html>

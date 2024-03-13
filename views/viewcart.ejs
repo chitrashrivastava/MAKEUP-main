@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Cart</title>
+  <link rel="stylesheet" href="stylesheets/cursor.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+<link rel="stylesheet" href="stylesheets/nav.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ <style>
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8e5e5; /* Soft pinkish background color */
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  color: #b36b88; /* Rose color for headings */
+}
+
+.cart-items-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px auto;
+}
+
+.cart-item {
+  border: 1px solid #e0d0d0; /* Light gray border */
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  max-width: 300px;
+  width: 100%;
+}
+
+.product-info {
+  margin-bottom: 15px;
+}
+
+.product-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.action-buttons {
+  margin-top: 10px;
+}
+
+.delete-btn {
+  background-color: #e74c3c; /* Red delete button */
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b; /* Darker red on hover */
+}
+
+.unavailable-info {
+  color: #d35400; /* Orange for unavailable product info */
+}
+
+.total-price-container {
+  position: fixed;
+  bottom: 1%;
+  right: 3%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 140px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background-color: #e9b2ab; /* Dark red background */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: rgb(65, 47, 47);
+}
+
+.checkout-btn {
+  background-color: #e67e22; /* Orange checkout button */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.product-info p{
+  text-align: center;
+  color: #b36b88;
+}
+.checkout-btn:hover {
+  background-color: #d49a4d; /* Darker orange on hover */
+}
+.no-item-text{
+  text-align: center;
+  color: #b36b88;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+ </style>
+</head>
+
+<body>
+  <%-include('./partials/customcursor')%>
+  <%-include('./partials/nav')%>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <h1>View Cart</h1>
+  <% if (cartItems.length > 0) { %>
+    <div class="cart-items-container">
+      <% cartItems.forEach(cartItem => { %>
+        <% if (cartItem.productId && cartItem.productId.productName) { %>
+          <div class="cart-item">
+            <div class="product-info">
+              <p><strong>Product Name:</strong> <%= cartItem.productId.productName %></p>
+              <p><strong>Description:</strong> <%= cartItem.productId.productDescription || 'N/A' %></p>
+              <p><strong>Price:</strong> <%= cartItem.productId.productPrice || 'N/A' %></p>
+              <p><strong>Quantity:</strong> <%= cartItem.quantity || 'N/A' %></p>
+            </div>
+            <div class="product-image">
+              <img src="<%= cartItem.productId.productImage %>" alt="<%= cartItem.productId.productName %> Image">
+            </div>
+            <div class="action-buttons">
+              <form action="/deleteCartItem" method="post">
+                <input type="hidden" name="cartItemId" value="<%= cartItem._id %>">
+                <button type="submit" class="delete-btn">Delete</button>
+              </form>
+            </div>
+          </div>
+        <% } %>
+      <% }); %>
+    </div>
+  
+    <div class="total-price-container">
+      <p><strong>Total Price:</strong> <%= calculateTotalPrice(cartItems) %></p>
+      <a href="/shippingaddress?totalPrice=<%= calculateTotalPrice(cartItems) %>"><button class="checkout-btn">Checkout</button></a>
+    </div>
+  <% } else { %>
+    <p class="no-item-text">No items in the cart.</p>
+  <% } %>
+  
+  <script>
+    function checkout() {
+      console.log('Checkout button clicked');
+    }
+  </script>
+<script src="javascripts/cursor.js"></script>
+</body>
+
+</html>
